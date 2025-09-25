@@ -98,7 +98,14 @@ const Profile = () => {
       toast.success('Profile updated successfully!');
       setIsEditing(false);
     } else {
-      toast.error(result.error || 'Failed to update profile');
+      const errorMessage = result.error?.message || 'Failed to update profile';
+      const validationErrors = result.error?.errors;
+
+      if (validationErrors && validationErrors.length > 0) {
+        validationErrors.forEach(err => toast.error(err.msg));
+      } else {
+        toast.error(errorMessage);
+      }
     }
   };
 
@@ -170,10 +177,10 @@ const Profile = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Profile Card */}
+{/*            
           <div className="lg:col-span-1">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-custom-light dark:shadow-custom-dark border border-gray-200 dark:border-gray-700 p-6">
-              {/* Avatar */}
+           
               <div className="text-center mb-6">
                 <div className="relative inline-block">
                   {user.avatar ? (
@@ -200,7 +207,7 @@ const Profile = () => {
                 <p className="text-gray-600 dark:text-gray-400 text-base">@{user.username}</p>
               </div>
 
-              {/* Quick Stats */}
+            
               <div className="space-y-4 pt-6 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -235,7 +242,7 @@ const Profile = () => {
                 </div>
               </div>
 
-              {/* Member Since */}
+             
               <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex items-center space-x-2 text-base text-gray-600 dark:text-gray-400">
                   <Calendar className="h-5 w-5" />
@@ -243,7 +250,7 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Profile Details */}
           <div className="lg:col-span-2">

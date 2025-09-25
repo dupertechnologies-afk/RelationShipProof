@@ -18,7 +18,7 @@ const FindSomeone = () => {
     debounce(async (query) => {
       if (query.length > 2) {
         try {
-          const response = await api.get(`/auth/search?q=${query}`); // Use the same search endpoint for now
+          const response = await api.get(`/auth/search/email?q=${query}`); // Use the correct search endpoint for email
           setSuggestions(response.data.users);
           setShowSuggestions(true);
         } catch (error) {
@@ -42,7 +42,7 @@ const FindSomeone = () => {
     setSuggestions([]); // Clear suggestions on explicit search
     setShowSuggestions(false);
     try {
-      const response = await api.get(`/auth/search?q=${searchTerm}`);
+      const response = await api.get(`/auth/search/email?q=${searchTerm}`); // Use the correct search endpoint for email
       setSearchResults(response.data.users);
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to search users.');

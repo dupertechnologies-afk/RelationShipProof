@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://relatio-backend.vercel.app/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 // Configure axios defaults
 axios.defaults.baseURL = API_URL;
@@ -129,7 +129,7 @@ const useAuthStore = create(
         } catch (error) {
           const errorMessage = error.response?.data?.message || 'Profile update failed';
           set({ error: errorMessage, isLoading: false });
-          return { success: false, error: errorMessage };
+          return { success: false, error: error.response?.data || { message: errorMessage } };
         }
       },
 
@@ -158,6 +158,10 @@ const useAuthStore = create(
         // Set auth token when store is rehydrated
         if (state?.token) {
           state.setAuthToken(state.token);
+          // If user exists but registrationId is missing, re-fetch user data
+          if (state.user && !state.user.registrationId) {
+            state.getMe();
+          }
         }
       }
     }
