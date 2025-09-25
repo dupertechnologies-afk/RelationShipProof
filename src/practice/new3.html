@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Fabrica®</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+ 
+
+.portfolio-sc-container {
+    background: #fff;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Hero Section */
+.portfolio-sc-portfolio-hero {
+    padding: 140px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-sc-hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+    z-index: 1;
+}
+
+.portfolio-sc-hero-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 120px;
+    align-items: start;
+}
+
+.portfolio-sc-hero-text {
+    opacity: 0;
+    animation: slideUp 1s ease forwards 0.3s;
+}
+
+.portfolio-sc-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+a{
+    text-decoration: none;
+}
+
+.portfolio-sc-breadcrumb a {
+    color: #666;
+    text-decoration: none;
+}
+
+.portfolio-sc-breadcrumb a:hover {
+    color: #1a1a1a;
+}
+
+.portfolio-sc-hero-title {
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 800;
+    line-height: 0.9;
+    margin-bottom: 2rem;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+}
+
+.portfolio-sc-hero-title span {
+    color: #777;
+}
+
+.portfolio-sc-hero-subtitle {
+    font-size: 1.25rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+.portfolio-sc-hero-visual {
+    opacity: 0;
+    animation: slideUp 1s ease forwards 0.6s;
+}
+
+.portfolio-sc-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.portfolio-sc-stat-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.4s ease;
+}
+
+.portfolio-sc-stat-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.portfolio-sc-stat-item.portfolio-sc-bottom {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.portfolio-sc-stat-group:hover {
+    gap: 0;
+    transform: scale(1.02);
+}
+
+.portfolio-sc-stat-group:hover .portfolio-sc-stat-item {
+    border-radius: 12px 12px 0 0;
+}
+
+.portfolio-sc-stat-group:hover .portfolio-sc-stat-item.portfolio-sc-bottom {
+    margin-top: -2px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: none;
+}
+
+.portfolio-sc-stat-group:hover .portfolio-sc-stat-item.portfolio-sc-top {
+    box-shadow: none;
+}
+
+.portfolio-sc-stat-number {
+    font-size: 48px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.portfolio-sc-stat-label {
+    font-size: 16px;
+    color: #000;
+    line-height: 1.4;
+    text-align: right;
+    max-width: 180px;
+    white-space: normal;
+    word-break: break-word;
+    margin-left: auto;
+}
+
+.portfolio-sc-stat-index {
+    font-size: 12px;
+    color: #999;
+    font-weight: 500;
+}
+
+.portfolio-sc-additional-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.portfolio-sc-logos-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    opacity: 0.6;
+}
+
+.portfolio-sc-logo-item {
+    font-size: 12px;
+    color: #999;
+}
+
+/* Portfolio Intro Section (Adapted from About Us) */
+.portfolio-sc-portfolio-intro {
+    padding: 80px 40px;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.portfolio-sc-portfolio-intro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    opacity: 0.5;
+    animation: pulse 6s ease-in-out infinite;
+}
+
+.portfolio-sc-intro-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-sc-intro-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 120px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.portfolio-sc-intro-label {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 0.2s;
+}
+
+.portfolio-sc-star-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-sc-intro-label:hover .portfolio-sc-star-icon {
+    transform: rotate(360deg);
+}
+
+.portfolio-sc-intro-content {
+    text-align: start;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.portfolio-sc-brand {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 0.4s;
+}
+
+.portfolio-sc-intro-title {
+    font-size: clamp(38px, 6vw, 60px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    letter-spacing: -0.02em;
+    background: linear-gradient(90deg, #000, #000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 0.6s;
+}
+
+.portfolio-sc-intro-title .highlight {
+    background: linear-gradient(90deg, #777, #777);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.portfolio-sc-intro-subtitle {
+    font-size: 20px;
+    color: #666;
+    line-height: 1.5;
+    font-weight: 400;
+    max-width: 600px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 0.8s;
+}
+
+/* Projects Section */
+.portfolio-sc-projects-header {
+    padding: 2rem 0;
+    min-height: 600px;
+    position: relative;
+    z-index: 2;
+}
+
+.portfolio-sc-projects-title-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: center;
+    justify-items: end;
+    margin: 50px 0;
+}
+
+.portfolio-sc-projects-title-section .portfolio-sc-title-wrapper {
+    grid-column: 2 / span 2;
+}
+
+.portfolio-sc-projects-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 0.9;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.portfolio-sc-copyright {
+    font-size: 1.5rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.portfolio-sc-projects-description {
+    width: 400px;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.7;
+    margin-top: 2rem;
+    margin-left: 100px;
+}
+
+.portfolio-sc-project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.portfolio-sc-project-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    opacity: 1;
+    animation: slideUp 0.8s ease forwards;
+}
+
+.portfolio-sc-project-card:nth-child(1) { animation-delay: 0.1s; }
+.portfolio-sc-project-card:nth-child(2) { animation-delay: 0.2s; }
+.portfolio-sc-project-card:nth-child(3) { animation-delay: 0.3s; }
+.portfolio-sc-project-card:nth-child(4) { animation-delay: 0.4s; }
+
+.portfolio-sc-project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-sc-project-image {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-sc-project-image.portfolio-sc-hoodie {
+    background: linear-gradient(135deg, #f3e8d3 0%, #e6d7c3 100%);
+}
+
+.portfolio-sc-project-image.portfolio-sc-blur {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+}
+
+.portfolio-sc-project-image.portfolio-sc-fabric {
+    background: linear-gradient(135deg, #d4c4a8 0%, #b8a082 100%);
+}
+
+.portfolio-sc-project-image.portfolio-sc-tech {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.portfolio-sc-project-image-name {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, font-size 0.3s ease;
+    position: absolute;
+}
+
+.portfolio-sc-project-card:hover .portfolio-sc-project-image-name {
+    opacity: 1;
+    font-size: 2rem;
+}
+
+.portfolio-sc-project-info {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.portfolio-sc-project-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.portfolio-sc-project-year {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.portfolio-sc-project-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.portfolio-sc-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.portfolio-sc-project-card:hover .portfolio-sc-dot {
+    background-color: #ff5f56;
+}
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0.3; }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .portfolio-sc-hero-content {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 1108px) {
+    .portfolio-sc-projects-description {
+        margin-left: 50px;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-sc-container {
+        padding: 0 1rem;
+    }
+
+    .portfolio-sc-hero-title {
+        font-size: 4rem;
+    }
+
+    .portfolio-sc-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .portfolio-sc-project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-sc-projects-title-section {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-sc-projects-description {
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .portfolio-sc-portfolio-intro {
+        padding: 60px 20px;
+    }
+
+    .portfolio-sc-intro-header {
+        margin-bottom: 80px;
+    }
+
+    .portfolio-sc-intro-title {
+        font-size: clamp(36px, 10vw, 48px);
+        margin-bottom: 30px;
+    }
+
+    .portfolio-sc-intro-subtitle {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-sc-intro-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+}
+</style>
+</head>
+<body class="portfolio-sc-about-port-screen">
+<!-- Hero Section -->
+<section class="portfolio-sc-portfolio-hero">
+    <div class="portfolio-sc-hero-background"></div>
+    <div class="portfolio-sc-container">
+        <div class="portfolio-sc-hero-content">
+            <div class="portfolio-sc-hero-text">
+                <div class="portfolio-sc-breadcrumb">
+                    <a href="#">Home</a>
+                    <span>→</span>
+                    <span>Portfolio</span>
+                </div>
+                <h1 class="portfolio-sc-hero-title">Our <span>Work</span>.</h1>
+                <p class="portfolio-sc-hero-subtitle">
+                    Explore our carefully curated collection of projects that showcase innovation, 
+                    creativity, and measurable business impact across diverse industries.
+                </p>
+            </div>
+            <div class="portfolio-sc-hero-visual">
+                <div class="portfolio-sc-visual-content">
+                    <div class="portfolio-sc-stats-section">
+                        <div class="portfolio-sc-stats-grid">
+                            <div class="portfolio-sc-stat-group portfolio-sc-group-left">
+                                <div class="portfolio-sc-stat-item portfolio-sc-top">
+                                    <div class="portfolio-sc-stat-index">01</div>
+                                    <div class="portfolio-sc-stat-number">50+</div>
+                                </div>
+                                <div class="portfolio-sc-stat-item portfolio-sc-bottom">
+                                    <div class="portfolio-sc-stat-label">Successful projects completed</div>
+                                    <p class="portfolio-sc-additional-text">
+                                        We've delivered 50+ projects that help companies generate real results.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="portfolio-sc-stat-group portfolio-sc-group-right">
+                                <div class="portfolio-sc-stat-item portfolio-sc-top">
+                                    <div class="portfolio-sc-stat-index">02</div>
+                                    <div class="portfolio-sc-stat-number">95%</div>
+                                </div>
+                                <div class="portfolio-sc-stat-item portfolio-sc-bottom">
+                                    <div class="portfolio-sc-stat-label">Customer satisfaction rate</div>
+                                    <div class="portfolio-sc-logos-section">
+                                        <div class="portfolio-sc-logo-item"><span>logoipsum</span></div>
+                                        <div class="portfolio-sc-logo-item"><span>logoipsum</span></div>
+                                        <div class="portfolio-sc-logo-item"><span>Logoipsum</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Intro Section (Adapted from About Us) -->
+<section class="portfolio-sc-portfolio-intro">
+    <div class="portfolio-sc-intro-container">
+        <header class="portfolio-sc-intro-header">
+            <div class="portfolio-sc-intro-label">
+                <div class="portfolio-sc-star-icon">✦</div>
+                <span>Projects</span>
+            </div>
+            <main class="portfolio-sc-intro-content">
+                <div class="portfolio-sc-brand">z-crew®</div>
+                <h1 class="portfolio-sc-intro-title"> 
+                    We transform visions <span class="highlight">into digital success.</span>
+                </h1>
+                <p class="portfolio-sc-intro-subtitle">
+                    Partner with our expert team to deliver innovative, high-impact digital solutions tailored to your goals.
+                </p>
+            </main>
+        </header>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="portfolio-sc-projects-header">
+    <div class="portfolio-sc-container">
+       
+        <div class="portfolio-sc-project-grid">
+            <a href="http://zcrew1.local/projectdetail/" target="_blank" rel="noopener noreferrer">
+                <div class="portfolio-sc-project-card">
+                    <div class="portfolio-sc-project-image portfolio-sc-hoodie">
+                        <div class="portfolio-sc-project-image-name">Boltshift.</div>
+                    </div>
+                    <div class="portfolio-sc-project-info">
+                        <div class="portfolio-sc-project-name">Boltshift.</div>
+                        <div class="portfolio-sc-project-year">/2025</div>
+                        <div class="portfolio-sc-project-dots">
+                            <div class="portfolio-sc-dot"></div>
+                            <div class="portfolio-sc-dot"></div>
+                            <div class="portfolio-sc-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="portfolio-sc-project-card">
+                <div class="portfolio-sc-project-image portfolio-sc-blur">
+                    <div class="portfolio-sc-project-image-name">Ephemeral.</div>
+                </div>
+                <div class="portfolio-sc-project-info">
+                    <div class="portfolio-sc-project-name">Ephemeral.</div>
+                    <div class="portfolio-sc-project-year">/2025</div>
+                    <div class="portfolio-sc-project-dots">
+                        <div class="portfolio-sc-dot"></div>
+                        <div class="portfolio-sc-dot"></div>
+                        <div class="portfolio-sc-dot"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-sc-project-card">
+                <div class="portfolio-sc-project-image portfolio-sc-fabric">
+                    <div class="portfolio-sc-project-image-name">Powersurge.</div>
+                </div>
+                <div class="portfolio-sc-project-info">
+                    <div class="portfolio-sc-project-name">Powersurge.</div>
+                    <div class="portfolio-sc-project-year">/2024</div>
+                    <div class="portfolio-sc-project-dots">
+                        <div class="portfolio-sc-dot"></div>
+                        <div class="portfolio-sc-dot"></div>
+                        <div class="portfolio-sc-dot"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-sc-project-card">
+                <div class="portfolio-sc-project-image portfolio-sc-tech">
+                    <div class="portfolio-sc-project-image-name">Mastermail.</div>
+                </div>
+                <div class="portfolio-sc-project-info">
+                    <div class="portfolio-sc-project-name">Mastermail.</div>
+                    <div class="portfolio-sc-project-year">/2024</div>
+                    <div class="portfolio-sc-project-dots">
+                        <div class="portfolio-sc-dot"></div>
+                        <div class="portfolio-sc-dot"></div>
+                        <div class="portfolio-sc-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
