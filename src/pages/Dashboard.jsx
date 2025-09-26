@@ -386,12 +386,12 @@ const Dashboard = () => {
                               </div>
                             </div>
                           </div>
-                          <Link
+                          {/* <Link
                             to={`/relationships/${relationship._id}`}
                             className="opacity-0 group-hover:opacity-100 flex items-center px-4 py-2 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/50 transition-all duration-300"
                           >
                             View <ChevronRight className="h-4 w-4 ml-1" />
-                          </Link>
+                          </Link> */}
                         </div>
                       );
                     })}
