@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Card with Matching Corner Borders</title>
+<style>
+  body {
+    min-height: 100vh;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    /* background: #1a1a2e; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .wrapper {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .wrapper:hover {
+    transform: translateY(-5px);
+  }
+
+  .card {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.5s ease;
+  }
+
+  .card-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .card-content {
+    font-size: 14px;
+    color: #e6e6e6;
+    line-height: 1.5;
+  }
+
+  /* corner shadows in square shape */
+  .corner {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    filter: blur(10px);
+    z-index: 1;
+  }
+
+  .top-left {
+    top: 5px; left: 5px;
+    background: linear-gradient(to bottom right, rgba(255,59,48), transparent);
+  }
+
+  .top-right {
+    top: 5px; right: 5px;
+    background: linear-gradient(to bottom left, rgba(15,132,255), transparent);
+  }
+
+  .bottom-left {
+    bottom: 5px; left: 5px;
+    background: linear-gradient(to top right, rgba(52,199,89), transparent);
+  }
+
+  .bottom-right {
+    bottom: 5px; right: 5px;
+    background: linear-gradient(to top left, rgba(255,214,10), transparent);
+  }
+
+  /* Corner borders that match the shadows */
+  .corner-border {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 3;
+  }
+
+  .border-tl {
+       width: 49%;
+    height: 49%;
+    top: 0;
+    left: 0;
+    border-top: 2px solid rgba(255,59,48,0.3);
+    border-left: 2px solid rgba(255,59,48,0.3);
+    border-top-left-radius: 16px;
+  }
+
+  .border-tr {
+    width: 49%;
+    height: 49%;
+    top: 0;
+    right: 0;
+    border-top: 2px solid rgba(15,132,255,0.3);
+    border-right: 2px solid rgba(15,132,255,0.3);
+    border-top-right-radius: 16px;
+  }
+
+  .border-bl {
+    width: 49%;
+    height: 49%;
+    bottom: 0;
+    left: 0;
+    border-bottom: 2px solid rgba(52,199,89,0.3);
+    border-left: 2px solid rgba(52,199,89,0.3);
+    border-bottom-left-radius: 16px;
+  }
+
+  .border-br {  
+    width: 50%;
+    height: 49%;
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid rgba(255,214,10,0.3);
+    border-right: 2px solid rgba(255,214,10,0.3);
+    border-bottom-right-radius: 16px;
+  }
+
+  /* hover = show glow and borders */
+  .wrapper:hover .corner,
+  .wrapper:hover .corner-border {
+    opacity: 1;
+  }
+
+  /* pulsing animation */
+  .wrapper:hover .top-left,
+  .wrapper:hover .border-tl {
+    animation: pulse 3s ease-in-out infinite;
+  }
+  
+  .wrapper:hover .top-right,
+  .wrapper:hover .border-tr {
+    animation: pulse 3s ease-in-out 0.5s infinite;
+  }
+  
+  .wrapper:hover .bottom-left,
+  .wrapper:hover .border-bl {
+    animation: pulse 3s ease-in-out 1s infinite;
+  }
+  
+  .wrapper:hover .bottom-right,
+  .wrapper:hover .border-br {
+    animation: pulse 3s ease-in-out 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% {scale: (1.2); opacity: 1.2; }
+    50% { scale: (1.2); opacity: 1.2; }
+    100% {scale: (1.2); opacity: 1.2; }
+  }
+
+  .instructions {
+    position: absolute;
+    bottom: 20px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <h3 class="card-title">Hover Effect</h3>
+      <p class="card-content">Now with matching corner borders and shadows!</p>
+    </div>
+    <!-- Corner shadows -->
+    <div class="corner top-left"></div>
+    <div class="corner top-right"></div>
+    <div class="corner bottom-left"></div>
+    <div class="corner bottom-right"></div>
+    
+    <!-- Corner borders -->
+    <div class="corner-border border-tl"></div>
+    <div class="corner-border border-tr"></div>
+    <div class="corner-border border-bl"></div>
+    <div class="corner-border border-br"></div>
+  </div>
+  
+  <div class="instructions">Hover over the card to see the matching corner borders and shadows</div>
+</body>
+</html>

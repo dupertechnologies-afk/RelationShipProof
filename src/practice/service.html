@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoho Services - Z-Crew</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* --primary: #0066FF;
+            --secondary: #FF3366; */
+            --primary: #000;
+            --secondary: #999;
+            --accent: #00CC99;
+            --dark: #0F172A;
+            --dark-light: #1E293B;
+            --light: #F8FAFC;
+            --gray: #94A3B8;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg: var(--dark);
+            --card-bg: var(--dark-light);
+            --text: var(--light);
+            --text-secondary: var(--gray);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg: var(--light);
+            --card-bg: white;
+            --text: var(--dark);
+            --text-secondary: #64748B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: var(--transition);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .zoho-hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(120deg, #f0f4ff, #ffffff);
+      overflow: hidden;
+    }
+
+    /* floating shapes for interactivity */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      animation: float 8s infinite ease-in-out;
+    }
+
+    .shape1 {
+      width: 180px;
+      height: 180px;
+      background: #ff4d4d;
+      top: 10%;
+      left: 5%;
+    }
+
+    .shape2 {
+      width: 250px;
+      height: 250px;
+      background: #4285f4;
+      bottom: 10%;
+      right: 8%;
+      animation-delay: 2s;
+    }
+
+    .shape3 {
+      width: 120px;
+      height: 120px;
+      background: #fbbc05;
+      top: 30%;
+      right: 15%;
+      animation-delay: 4s;
+    }
+    .shape4 {
+      width: 160px;
+      height: 160px;
+      background: #05fb3a;
+      top: 60%;
+      left: 15%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .zoho-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    .zoho-hero h1 span {
+      color: #777;
+    }
+
+    .zoho-hero p {
+      max-width: 800px;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .zoho-hero .tagline {
+      margin-top: 1.5rem;
+      font-style: italic;
+      color: #666;
+    }
+
+        /* Services Section */
+       
+
+    
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        /* Services Section */
+        .zoho-services {
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .zoho-services-offer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Hexagon Card Design */
+        .zoho-service-offer-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        .zoho-service-offer-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .zoho-service-offer-card:hover::before {
+            animation: shine 1.5s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -50%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
+
+        .service-offer-icon-container {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-offer-icon-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .service-offer-icon {
+            font-size: 2.5rem;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--primary));
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .zoho-service-offer-card:hover .service-offer-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .zoho-service-offer-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .zoho-service-offer-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--secondary));
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .zoho-service-offer-card:hover h3::after {
+            width: 80px;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+            width: 100%;
+        }
+
+        .service-features li {
+            padding: 0.8rem 0;
+            /* margin-bottom: 0.5rem; */
+            position: relative;
+            font-size: 1rem;
+            transition: var(--transition);
+            color: #555;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-features li:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .service-cta {
+            margin-top: auto;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Individual service colors */
+        .consulting .service-offer-icon-bg {
+            background: var(--primary);
+        }
+        
+        .implementation .service-offer-icon-bg {
+            background: var(--success);
+        }
+        
+        .integration .service-offer-icon-bg {
+            background: var(--accent);
+        }
+        
+        .system-admin .service-offer-icon-bg {
+            background: var(--warning);
+        }
+        
+        .training .service-offer-icon-bg {
+            background: var(--secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .zoho-services-offer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .zoho-services-offer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .zoho-service-offer-card {
+                padding: 2rem;
+            }
+            
+            .service-offer-icon-container {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .service-offer-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation for cards */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .zoho-service-offer-card {
+            animation: fadeIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .zoho-service-offer-card:nth-child(1) { animation-delay: 0.1s; }
+        .zoho-service-offer-card:nth-child(2) { animation-delay: 0.2s; }
+        .zoho-service-offer-card:nth-child(3) { animation-delay: 0.3s; }
+        .zoho-service-offer-card:nth-child(4) { animation-delay: 0.4s; }
+        .zoho-service-offer-card:nth-child(5) { animation-delay: 0.5s; }
+
+        /* Toggle view button */
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .toggle-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* Service Sections */
+        .service-section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .service-section:nth-child(even) {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .service-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: white;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+            transform: translateX(-100%);
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover::before {
+            transform: translateX(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .zoho-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .zoho-hero {
+                padding: 4rem 1rem;
+            }
+            
+            .zoho-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .zoho-hero p {
+                font-size: 1rem;
+            }
+
+            .hero-content {
+                padding: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .zoho-services-grid,
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-section h2 {
+                font-size: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <section class="zoho-hero">
+        <!-- floating shapes -->
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+    
+        <h1>Empowering Businesses with <span>Zoho Solutions</span></h1>
+        <p>
+          At Z-Crew, we help businesses harness the full potential of the Zoho ecosystem. 
+          From CRM and Finance to HR and Custom Apps, our tailored Zoho implementations 
+          simplify operations, improve collaboration, and accelerate growth.
+        </p>
+        <div class="tagline">Your business goals, powered by Zoho.</div>
+      </section>
+
+    <!-- What We Offer Section -->
+    <section class="zoho-services">
+        <div class="container">
+            <div class="section-header">
+                <h2>What We Offer</h2>
+                <p>Comprehensive Zoho solutions to streamline your business processes</p>
+            </div>
+        
+            <div class="zoho-services-offer-grid">
+                <!-- Consulting -->
+                <div class="zoho-service-offer-card consulting">
+                    <div class="service-offer-icon-container">
+                        <div class="service-offer-icon-bg"></div>
+                        <div class="service-offer-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <h3>Consulting</h3>
+                    <ul class="service-features">
+                        <li>Right Mix of Zoho Applications</li>
+                        <li>Address Unique Needs</li>
+                        <li>Unified Workflow</li>
+                        <li>Custom Built Applications</li>
+                    </ul>
+                   
+                </div>
+
+                <!-- Implementation -->
+                <div class="zoho-service-offer-card implementation">
+                    <div class="service-offer-icon-container">
+                        <div class="service-offer-icon-bg"></div>
+                        <div class="service-offer-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                    </div>
+                    <h3>Implementation</h3>
+                    <ul class="service-features">
+                        <li>Customized Configuration</li>
+                        <li>Solutions Development</li>
+                        <li>Deployment</li>
+                        <li>Cohesive Ecosystem</li>
+                    </ul>
+                   
+                </div>
+
+                <!-- Integration -->
+                <div class="zoho-service-offer-card integration">
+                    <div class="service-offer-icon-container">
+                        <div class="service-offer-icon-bg"></div>
+                        <div class="service-offer-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                    </div>
+                    <h3>Integration</h3>
+                    <ul class="service-features">
+                        <li>Integration with Third-Party Applications</li>
+                        <li>Increased Functionality</li>
+                        <li>Efficient Business Processes</li>
+                        <li>Zoho Native Integration</li>
+                    </ul>
+                   
+                </div>
+
+                <!-- System Administration -->
+                <div class="zoho-service-offer-card system-admin">
+                    <div class="service-offer-icon-container">
+                        <div class="service-offer-icon-bg"></div>
+                        <div class="service-offer-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                    </div>
+                    <h3>System Administration</h3>
+                    <ul class="service-features">
+                        <li>Business Process Enhancements</li>
+                        <li>Regular Updates and Upgrades</li>
+                        <li>License Management</li>
+                    </ul>
+                   
+                </div>
+
+                <!-- Training -->
+                <div class="zoho-service-offer-card training">
+                    <div class="service-offer-icon-container">
+                        <div class="service-offer-icon-bg"></div>
+                        <div class="service-offer-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <h3>Training</h3>
+                    <ul class="service-features">
+                        <li>Zoho Application Specific Training Programme</li>
+                        <li>Systematic User Onboarding</li>
+                        <li>Easy-To-Follow Instructions</li>
+                        <li>Helpful Customized Instruction Manuals</li>
+                    </ul>
+                   
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+
+
+    <!-- Zoho CRM Plus Services Section -->
+    <section class="service-section">
+        <div class="container">
+            <h2>Zoho CRM Plus Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3 class="service-title">Zoho SalesIQ</h3>
+                    <p class="service-description">Online live chat and website visitor tracking software that fuels business growth.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-envelope service-icon"></i>
+                    <h3 class="service-title">SalesINBOX</h3>
+                    <p class="service-description">Unlimited emails for up to 100,000 contacts.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-user-friends service-icon"></i>
+                    <h3 class="service-title">Zoho Desk</h3>
+                    <p class="service-description">10 customer service channels.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tasks service-icon"></i>
+                    <h3 class="service-title">Zoho Projects</h3>
+                    <p class="service-description">Track unlimited number of projects.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-chart-bar service-icon"></i>
+                    <h3 class="service-title">Zoho Analytics</h3>
+                    <p class="service-description">Unlimited reports and dashboards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zoho Marketing Plus Services Section -->
+    <section class="service-section">
+        <div class="container">
+            <h2>Zoho Marketing Plus Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-share-alt service-icon"></i>
+                    <h3 class="service-title">Zoho Social</h3>
+                    <p class="service-description">Manage multiple social networks and improve your social media presence.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-envelope service-icon"></i>
+                    <h3 class="service-title">Campaign</h3>
+                    <p class="service-description">Create, send, and track email campaigns that help you build a strong customer base.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-poll service-icon"></i>
+                    <h3 class="service-title">Survey</h3>
+                    <p class="service-description">Create surveys, polls, and questionnaires to understand your customers.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3 class="service-title">Back Stage</h3>
+                    <p class="service-description">Plan and run conferences, meet-ups, and product launches with great efficiency and impact.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-video service-icon"></i>
+                    <h3 class="service-title">Webinars</h3>
+                    <p class="service-description">Host webinars to educate your audience, offer training, demos and engage in online discussion.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-eye service-icon"></i>
+                    <h3 class="service-title">Page Sense</h3>
+                    <p class="service-description">Offer personalized website experience by understanding website visitor behaviour.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-robot service-icon"></i>
+                    <h3 class="service-title">Marketing Automation</h3>
+                    <p class="service-description">Create personalized journeys for every lead or customer and accelerate business growth.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-chart-bar service-icon"></i>
+                    <h3 class="service-title">Analytics</h3>
+                    <p class="service-description">Business intelligence, reporting and analytics tool to make better data-driven decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zoho Finance Plus Services Section -->
+    <section class="service-section">
+        <div class="container">
+            <h2>Zoho Finance Plus Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-book service-icon"></i>
+                    <h3 class="service-title">Zoho Books</h3>
+                    <p class="service-description">Zoho Books is FTA-approved VAT-compliant accounting software that makes it easy to send invoices, manage expenses, reconcile bank transactions, track inventory, and generate insightful reports.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-file-invoice service-icon"></i>
+                    <h3 class="service-title">Zoho Invoice</h3>
+                    <p class="service-description">Zoho Invoice is an online invoicing software designed to help small businesses with invoicing and payment collection. It is simple, secure and has mobile accessibility facilitating invoicing on the go.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-warehouse service-icon"></i>
+                    <h3 class="service-title">Zoho Inventory</h3>
+                    <p class="service-description">Zoho Inventory is a cloud-based tool that helps businesses track stock, manage orders, and streamline supply chain processes. It offers real-time visibility and control over inventory operations.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-file-invoice-dollar service-icon"></i>
+                    <h3 class="service-title">Zoho Billing</h3>
+                    <p class="service-description">Zoho Billing is a cloud-based billing software tailored for freelancers, SMEs, and self-employed professionals to manage invoicing, payments, and billing with ease.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-money-check-alt service-icon"></i>
+                    <h3 class="service-title">Zoho Expense</h3>
+                    <p class="service-description">Zoho Expense is a cloud-based expense management software that helps businesses and professionals efficiently track expenses, simplify reporting, and maintain accurate financial records.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-credit-card service-icon"></i>
+                    <h3 class="service-title">Zoho Check Out</h3>
+                    <p class="service-description">Zoho Check Out enable businesses to make their own custom branded payment pages and start accepting payments right away.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zoho People Plus Services Section -->
+    <section class="service-section">
+        <div class="container">
+            <h2>Zoho People Plus Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-user-tie service-icon"></i>
+                    <h3 class="service-title">Zoho People</h3>
+                    <p class="service-description">Zoho People is a cloud-based HR management software that helps businesses efficiently handle HR tasks, processes, and employee data.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-user-check service-icon"></i>
+                    <h3 class="service-title">Zoho Recruit</h3>
+                    <p class="service-description">Zoho Recruit is a cloud-based applicant tracking system that helps businesses and agencies manage job postings, track applicants, and streamline the hiring process.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-money-check-alt service-icon"></i>
+                    <h3 class="service-title">Zoho Expense</h3>
+                    <p class="service-description">Zoho Expense is a cloud-based expense management software that helps businesses and professionals easily track expenses, simplify reporting, and ensure accurate financial records.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-users service-icon"></i>
+                    <h3 class="service-title">Zoho Connect</h3>
+                    <p class="service-description">Zoho Connect is a cloud-based collaboration and social networking platform designed to facilitate communication, collaboration, and knowledge sharing within organizations.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-comments service-icon"></i>
+                    <h3 class="service-title">Zoho Cliq</h3>
+                    <p class="service-description">Zoho Cliq is a team communication and collaboration platform designed to help teams and organizations enhance real-time communication, improve collaboration, and streamline teamwork.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-lock service-icon"></i>
+                    <h3 class="service-title">Zoho Vault</h3>
+                    <p class="service-description">Zoho Vault is a cloud-based password management and security solution designed to help individuals and organizations securely store, manage, and share their passwords and sensitive information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Set initial theme based on system preference
+        if (prefersDarkScheme.matches) {
+            document.body.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            document.body.setAttribute('data-theme', 'light');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // Add subtle animation to service cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card, .zoho-service-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            serviceCards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+     <script>
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.zoho-service-card');
+            const ctaButtons = document.querySelectorAll('.service-cta');
+            
+            // Card hover effects
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'var(--shadow)';
+                });
+            });
+            
+            // CTA button effects
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.innerHTML = 'Coming Soon <i class="fas fa-hourglass-half"></i>';
+                    this.style.background = 'var(--gray)';
+                    setTimeout(() => {
+                        this.innerHTML = 'Learn More <i class="fas fa-arrow-right"></i>';
+                        this.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+                    }, 2000);
+                });
+            });
+            
+            // Toggle button effect
+            const toggleBtn = document.querySelector('.toggle-btn');
+            toggleBtn.addEventListener('click', function() {
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-th-large"></i> View All Services';
+                    alert('This would show all services in a real implementation!');
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boltshift - AeroLogix Website Redesign</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+           
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* About Section Styles */
+        .pr-dt-about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pr-dt-about-header {
+            margin-bottom: 100px;
+        }
+
+        .pr-dt-about-studio-title {
+            font-size: clamp(80px, 12vw, 180px);
+            font-weight: 900;
+            color: #000;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+        }
+
+        .pr-dt-about-main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+
+        .pr-dt-about-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .pr-dt-about-plus-icon {
+            width: 22px;
+            height: 22px;
+            background-color: #000;
+            color: #fff;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .pr-dt-about-description h2 {
+            text-indent: 100px;
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 1.3;
+            margin: 0;
+            color: #000;
+        }
+
+        .pr-dt-about-description span {
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 1.3;
+            color: #666;
+        }
+
+        .pr-dt-about-description p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .pr-dt-about-side-text {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .pr-dt-about-social-proof {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: auto;
+            padding-top: 40px;
+        }
+
+        .pr-dt-about-client-avatars {
+            display: flex;
+            align-items: center;
+        }
+
+        .pr-dt-about-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -8px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .pr-dt-about-avatar:first-child {
+            margin-left: 0;
+        }
+
+        .pr-dt-about-avatar-1 {
+            background-color: #ddd;
+        }
+
+        .pr-dt-about-avatar-2 {
+            background-color: #ccc;
+        }
+
+        .pr-dt-about-avatar-3 {
+            background-color: #bbb;
+        }
+
+        .pr-dt-about-avatar-4 {
+            background-color: #aaa;
+        }
+
+        .pr-dt-about-client-count {
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .pr-dt-about-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 16px;
+        }
+
+        .pr-dt-about-stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .pr-dt-about-star {
+            color: #ffa500;
+            font-size: 16px;
+        }
+
+        .pr-dt-about-rating-text {
+            font-size: 14px;
+            color: #666;
+            margin-left: 4px;
+        }
+
+        .pr-dt-about-footer-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .pr-dt-about-footer-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .pr-dt-about-footer-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .pr-dt-about-footer-btn.pr-dt-about-framer {
+            background: white;
+            color: #000;
+            border: 1px solid #e0e0e0;
+        }
+
+        .pr-dt-about-footer-btn.pr-dt-about-framer:hover {
+            background: #f5f5f5;
+        }
+
+        .pr-dt-about-btn-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: currentColor;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* Main Project Styles */
+        .pr-dt-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .pr-dt-header {
+            background: #f5f5f5;
+            padding: 80px 0 60px;
+        }
+
+        .pr-dt-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .pr-dt-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .pr-dt-nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .pr-dt-nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .pr-dt-nav-links a:hover {
+            color: #1a1a1a;
+        }
+
+        .pr-dt-hero-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 120px;
+            align-items: center;
+        }
+
+        .pr-dt-hero-title {
+            font-size: 120px;
+            font-weight: 800;
+            line-height: 0.9;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+
+        .pr-dt-hero-text {
+            font-size: 20px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .pr-dt-project-details {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .pr-dt-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .pr-dt-details-list {
+            position: relative;
+        }
+
+        .pr-dt-detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            position: relative;
+        }
+
+        .pr-dt-detail-item::before {
+            content: "";
+            position: absolute;
+            left: -100%;
+            width: 200%;
+            height: 1px;
+            background: #eee;
+            top: 0;
+        }
+
+        .pr-dt-detail-label {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .pr-dt-detail-value {
+            font-weight: 600;
+            font-size: 16px;
+            color: #1a1a1a;
+        }
+
+        .pr-dt-logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .pr-dt-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .pr-dt-logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .pr-dt-device-mockup {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #ddd 0%, #bbb 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pr-dt-device-screen {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            height: 120px;
+            background: #1a1a1a;
+            border-radius: 8px;
+        }
+
+        .pr-dt-project-image {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            padding: 0 10px;
+            background: white;
+        }
+
+        .pr-dt-pr-img-a {
+            width: 100%;
+            height: 400px;
+            background-color: #1a1a1a;
+            border-radius: 20px;
+        }
+
+        .pr-dt-pr-img-b {
+            width: 100%;
+            height: 400px;
+            background-color: #666;
+            border-radius: 20px;
+        }
+
+        .pr-dt-challenges {
+            background: white;
+            padding: 160px 0;
+        }
+
+        .pr-dt-challenges-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: start;
+        }
+
+        .pr-dt-section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pr-dt-section-icon {
+            width: 24px;
+            height: 24px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .pr-dt-challenges-text {
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+
+        .pr-dt-solution-text {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .pr-dt-live-project-btn {
+            background: #1a1a1a;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .pr-dt-live-project-btn:hover {
+            background: #333;
+        }
+
+        .pr-dt-final-thoughts {
+            background: #f5f5f5;
+            padding: 80px 0;
+        }
+
+        .pr-dt-thoughts-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: start;
+        }
+
+        .pr-dt-thoughts-text {
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+
+        .pr-dt-thoughts-description {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .pr-dt-next-projects {
+            background: #f5f5f5;
+            padding: 40px 0 80px;
+        }
+
+        .pr-dt-next-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 40px;
+        }
+
+        .pr-dt-next-title {
+            font-size: 120px;
+            font-weight: 800;
+            line-height: 0.9;
+            color: #1a1a1a;
+        }
+
+        .pr-dt-fabric-credit {
+            font-size: 16px;
+            color: #666;
+            align-self: flex-start;
+            margin-top: 20px;
+        }
+
+        .pr-dt-all-projects-btn {
+            background: #1a1a1a;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .pr-dt-all-projects-btn:hover {
+            background: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .pr-dt-about-main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: left;
+            }
+
+            .pr-dt-about-section {
+                justify-content: flex-start;
+            }
+
+            .pr-dt-about-side-text {
+                max-width: 600px;
+                padding-top: 0;
+            }
+
+            .pr-dt-hero-title, .pr-dt-next-title {
+                font-size: 80px;
+            }
+            
+            .pr-dt-challenges-text, .pr-dt-thoughts-text {
+                font-size: 36px;
+            }
+            
+            .pr-dt-details-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .pr-dt-extra-col {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pr-dt-about-container, .pr-dt-container {
+                padding: 40px 20px;
+            }
+
+            .pr-dt-about-header {
+                margin-bottom: 60px;
+            }
+
+            .pr-dt-about-description h2, .pr-dt-about-description span {
+                font-size: 26px;
+                text-indent: 0;
+            }
+            
+            .pr-dt-about-description p {
+                font-size: 16px;
+            }
+
+            .pr-dt-about-social-proof {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .pr-dt-about-footer-buttons {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 40px;
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .pr-dt-hero-content, .pr-dt-details-grid, .pr-dt-challenges-content, .pr-dt-thoughts-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .pr-dt-hero-title, .pr-dt-next-title {
+                font-size: 48px;
+            }
+            
+            .pr-dt-challenges-text, .pr-dt-thoughts-text {
+                font-size: 28px;
+            }
+            
+            .pr-dt-nav-links {
+                display: none;
+            }
+            
+            .pr-dt-project-image {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pr-dt-about-description h2,
+            .pr-dt-about-description span {
+                font-size: 22px;
+            }
+            
+            .pr-dt-about-description p {
+                font-size: 14px;
+            }
+
+            .pr-dt-about-social-proof {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .pr-dt-about-rating {
+                margin-left: 0;
+            }
+            
+            .pr-dt-next-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .pr-dt-next-title {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pr-dt-about-container">
+        <header class="pr-dt-about-header">
+          <h1 class="pr-dt-about-studio-title">Boltshift.</h1>
+        </header>
+    
+        <main class="pr-dt-about-main-content">
+          <div class="pr-dt-about-section">
+            <div class="pr-dt-about-plus-icon">✦</div>
+            <span>Introduction</span>
+          </div>
+    
+          <div class="pr-dt-about-description">
+            <h2>
+              As a premier <span class="highlight">Zoho Authorized Partner in the UAE, Saudi Arabia & the Middle East</span>, we specialize in crafting tailored solutions that drive efficiency and growth.
+            </h2>
+            <p>From expert Zoho implementations—like CRM, Books, Creator, and Zoho One—to automation, data migration, and unified system architecture, our team empowers your business to scale smarter without unnecessary complexity.</p>
+          </div>
+        </main>
+      </div>
+
+    <!-- Project Details -->
+    <section class="pr-dt-project-details">
+        <div class="pr-dt-container">
+            <div class="pr-dt-details-grid">
+                <div class="pr-dt-extra-col"></div>
+                <div class="pr-dt-details-list">
+                    <div class="pr-dt-detail-item">
+                        <span class="pr-dt-detail-label">Year</span>
+                        <span class="pr-dt-detail-value">2025</span>
+                    </div>
+                    <div class="pr-dt-detail-item">
+                        <span class="pr-dt-detail-label">Industry</span>
+                        <span class="pr-dt-detail-value">Logistics & Supply Chain</span>
+                    </div>
+                    <div class="pr-dt-detail-item">
+                        <span class="pr-dt-detail-label">Scope of work</span>
+                        <span class="pr-dt-detail-value">Branding / Web design</span>
+                    </div>
+                    <div class="pr-dt-detail-item">
+                        <span class="pr-dt-detail-label">Timeline</span>
+                        <span class="pr-dt-detail-value">12 weeks</span>
+                    </div>
+                    <div class="pr-dt-detail-item" style="padding-top: 40px;">
+                        <div class="pr-dt-logo-section">
+                            <div class="pr-dt-logo-icon">B</div>
+                            <span class="pr-dt-logo-text">Boltshift</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="pr-dt-project-image">
+        <div class="pr-dt-pr-img-a"></div>
+        <div class="pr-dt-pr-img-b"></div>
+    </div>
+
+    <!-- Challenges -->
+    <section class="pr-dt-challenges">
+        <div class="pr-dt-container">
+            <div class="pr-dt-challenges-content">
+                <div>
+                    <div class="pr-dt-section-title">
+                        <span class="pr-dt-section-icon">+</span>
+                        Challenges
+                    </div>
+                </div>
+                <div>
+                    <h2 class="pr-dt-challenges-text">
+                        AeroLogix's previous website was slow, difficult to navigate, and didn't effectively communicate the company's value. Key issues included:
+                    </h2>
+                    <p class="pr-dt-solution-text">
+                        Development was centered around speed and scalability. We built the website using Next.js, ensuring it was lightweight and highly optimized.
+                    </p>
+                    <button class="pr-dt-live-project-btn">Live Project</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Thoughts -->
+    <section class="pr-dt-final-thoughts">
+        <div class="pr-dt-container">
+            <div class="pr-dt-thoughts-content">
+                <div>
+                    <div class="pr-dt-section-title">
+                        <span class="pr-dt-section-icon">+</span>
+                        Final thoughts
+                    </div>
+                </div>
+                <div>
+                    <h2 class="pr-dt-thoughts-text">
+                        The new AeroLogix website is now a key part of their business growth, serving as a powerful tool for attracting new clients and strengthening relationships with existing partners.
+                    </h2>
+                    <p class="pr-dt-thoughts-description">
+                        For us at Boltshift, this project was an opportunity to push the boundaries of what a modern logistics website can achieve.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Projects -->
+    <section class="pr-dt-next-projects">
+        <div class="pr-dt-container">
+            <div class="pr-dt-next-header">
+                <div>
+                    <div class="pr-dt-fabric-credit">fabrica®</div>
+                    <h2 class="pr-dt-next-title">Next projects.</h2>
+                </div>
+                <button class="pr-dt-all-projects-btn">All projects</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

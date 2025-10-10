@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Choose Us - Updated</title>
+    <style>
+ 
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .header-whyChoseUs {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .header-whyChoseUs h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .star-icon {
+            width: 20px;
+            height: 20px;
+            background-color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .main-headline {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 80px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .main-headline .highlight {
+            color: #666;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 180px;
+            align-items: start;
+        }
+
+        .image-section {
+            position: relative;
+        }
+
+           .portrait-image {
+            width: 100%;
+            /*max-width: 300px;*/
+            /*height: 500px;*/
+            border-radius: 40px;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+        .elementor img {
+            border-radius: 20px;
+        }
+
+        .plus-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+   
+
+        .description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .description strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.stat-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.4s ease;
+}
+
+.stat-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+.stat-item-bottom{
+    background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+ 
+.stat-group:hover {
+  gap: 0; 
+}
+
+.stat-group:hover .stat-item {
+  border-radius: 12px 12px 0 0;
+}
+
+.stat-group:hover .stat-item.bottom {
+  margin-top: -2px;
+  border-radius: 0 0 12px 12px;
+}
+
+ 
+.stat-group:hover .stat-item.top,
+.stat-group:hover .stat-item.bottom {
+  box-shadow: none;
+}
+.stat-group:hover {
+  transform: scale(1.02);
+}
+
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #000;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+    font-size: 16px;
+    color: #000;
+    line-height: 1.4;
+    text-align: right;   
+    max-width: 180px;    
+    white-space: normal; 
+    word-break: break-word; 
+    margin-left: auto;  
+}
+
+
+        .stat-index {
+            position: relative;
+            top: 0px;
+            left: 100%;
+            font-size: 12px;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .additional-text {
+            font-size: 14px;
+            color: #666;
+            /* margin-bottom: 40px; */
+            line-height: 1.5;
+        }
+
+        .logos-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            opacity: 0.6;
+        }
+
+        .logo-item {
+            font-size: 12px;
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            background-color: #ccc;
+            border-radius: 50%;
+        }
+
+        .logo-icon {
+            width: 16px;
+            height: 16px;
+            background-color: #ddd;
+            border-radius: 3px;
+        }
+        @media (max-width: 968px) {
+        .content-grid {
+            
+            gap: 60px;
+         
+        }
+    }
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .section-header-whyChoseUs {
+                margin-bottom: 40px;
+            }
+
+            .main-headline {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-whyChoseUs">
+            <h2>
+                <span class="star-icon">✦</span>
+                Why Choose us
+            </h2>
+            
+        </div>
+
+        <h1 class="main-headline">
+    Smart solutions for your business,<br> <span class="highlight">so you can focus on what matters most.</span>
+</h1>
+
+        <div class="content-grid">
+            <div class="image-section">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Professional woman" class="portrait-image"/>
+            </div>
+
+            <div class="content-section">
+               <p class="description">
+    <strong>At Z-CrewTech, we don’t just deliver projects, we deliver reliability.</strong> 
+    With a team of passionate experts and future-ready solutions, we ensure your business stays ahead in a fast-changing digital world.
+</p>
+
+
+                <div class="stats-grid">
+                    <div class="stat-group group-left">
+                      <div class="stat-item top">
+                        <div class="stat-index">01</div>
+                        <div class="stat-number">50+</div>
+                      </div>
+                      <div class="stat-item stat-item-bottom bottom">
+                        <div class="stat-label">Successful projects completed</div>
+                        <p class="additional-text">
+                          We've delivered 50+ projects that help companies generate real results.
+                        </p>
+                      </div>
+                    </div>
+                  
+                    <div class="stat-group group-right">
+                      <div class="stat-item top">
+                        <div class="stat-index">02</div>
+                        <div class="stat-number">95%</div>
+                      </div>
+                      <div class="stat-item stat-item-bottom bottom">
+                        <div class="stat-label">Customer satisfaction rate</div>
+                        <div class="logos-section">
+                          <div class="logo-item"><span>logoipsum</span></div>
+                          <div class="logo-item"><span>logoipsum</span></div>
+                          <div class="logo-item"><span>Logoipsum</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+
+               
+              
+            </div>
+        </div>
+    </div>
+</body>
+</html>
