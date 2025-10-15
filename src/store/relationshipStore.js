@@ -184,6 +184,82 @@ getRelationship: async (id) => {
     }
   },
 
+  // Request type change
+  requestTypeChange: async (id, { newType, message }) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axios.post(`/relationships/${id}/request-type-change`, { newType, message });
+      const { relationship } = response.data;
+      set(state => ({
+        relationships: state.relationships.map(r => r._id === id ? relationship : r),
+        currentRelationship: state.currentRelationship?._id === id ? relationship : state.currentRelationship,
+        isLoading: false
+      }));
+      return { success: true, relationship };
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Failed to request type change';
+      set({ error: errorMessage, isLoading: false });
+      return { success: false, error: errorMessage };
+    }
+  },
+
+  // Accept type change
+  acceptTypeChange: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axios.post(`/relationships/${id}/accept-type-change`);
+      const { relationship } = response.data;
+      set(state => ({
+        relationships: state.relationships.map(r => r._id === id ? relationship : r),
+        currentRelationship: state.currentRelationship?._id === id ? relationship : state.currentRelationship,
+        isLoading: false
+      }));
+      return { success: true, relationship };
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Failed to accept type change';
+      set({ error: errorMessage, isLoading: false });
+      return { success: false, error: errorMessage };
+    }
+  },
+
+  // Decline type change
+  declineTypeChange: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axios.post(`/relationships/${id}/decline-type-change`);
+      const { relationship } = response.data;
+      set(state => ({
+        relationships: state.relationships.map(r => r._id === id ? relationship : r),
+        currentRelationship: state.currentRelationship?._id === id ? relationship : state.currentRelationship,
+        isLoading: false
+      }));
+      return { success: true, relationship };
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Failed to decline type change';
+      set({ error: errorMessage, isLoading: false });
+      return { success: false, error: errorMessage };
+    }
+  },
+
+  // Cancel type change (by requester)
+  cancelTypeChange: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axios.post(`/relationships/${id}/cancel-type-change`);
+      const { relationship } = response.data;
+      set(state => ({
+        relationships: state.relationships.map(r => r._id === id ? relationship : r),
+        currentRelationship: state.currentRelationship?._id === id ? relationship : state.currentRelationship,
+        isLoading: false
+      }));
+      return { success: true, relationship };
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Failed to cancel type change';
+      set({ error: errorMessage, isLoading: false });
+      return { success: false, error: errorMessage };
+    }
+  },
+
   // Generate relationship certificate
   generateRelationshipCertificate: async (relationshipId) => {
     set({ isLoading: true, error: null });
@@ -252,15 +328,16 @@ getRelationship: async (id) => {
   declineRelationship: async (id) => {
     set({ isLoading: true, error: null });
     try {
-      await axios.post(`/relationships/${id}/decline`);
-      
+      const response = await axios.post(`/relationships/${id}/decline`);
+      const { relationship } = response.data;
+
       set(state => ({
-        relationships: state.relationships.filter(r => r._id !== id),
-        currentRelationship: state.currentRelationship?._id === id ? null : state.currentRelationship,
+        relationships: state.relationships.map(r => r._id === id ? relationship : r),
+        currentRelationship: state.currentRelationship?._id === id ? relationship : state.currentRelationship,
         isLoading: false
       }));
       
-      return { success: true };
+      return { success: true, relationship };
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Failed to decline relationship';
       set({ error: errorMessage, isLoading: false });

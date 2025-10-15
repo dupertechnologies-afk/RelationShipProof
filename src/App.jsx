@@ -12,6 +12,7 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Relationships from './pages/Relationships';
 import RelationshipDetail from './pages/RelationshipDetail';
+import RelationshipSummary from './pages/RelationshipSummary';
 import InviteRelationship from './pages/InviteRelationship';
 import Terms from './pages/Terms';
 import Milestones from './pages/Milestones';
@@ -101,6 +102,11 @@ function App() {
             <Route path="/relationships/:id" element={
               <ProtectedRoute>
                 <RelationshipDetail />
+              </ProtectedRoute>
+            } />
+            <Route path="/relationships/:id/summary" element={
+              <ProtectedRoute>
+                <RelationshipSummary />
               </ProtectedRoute>
             } />
           

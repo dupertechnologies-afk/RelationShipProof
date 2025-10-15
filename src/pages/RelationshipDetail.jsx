@@ -12,6 +12,7 @@ import {
   MessageCircle,
   TrendingUp,
   Edit,
+  ChevronDown,
   // History,
   // Lock,
   // Unlock,
@@ -26,8 +27,11 @@ const RelationshipDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useAuthStore();
-  const { currentRelationship, getRelationship, relationships, isLoading, setCurrentRelationship, generateRelationshipCertificate, updateRelationship } = useRelationshipStore();
+  const { currentRelationship, getRelationship, relationships, isLoading, setCurrentRelationship, generateRelationshipCertificate, updateRelationship, requestTypeChange, acceptTypeChange, declineTypeChange, cancelTypeChange } = useRelationshipStore();
   const [activeTab, setActiveTab] = useState('overview');
+  const [showTypeDropdown, setShowTypeDropdown] = useState(false);
+  const [selectedType, setSelectedType] = useState('');
+  const [typeChangeMessage, setTypeChangeMessage] = useState('');
   // const [isRequestingHistoryAccess, setIsRequestingHistoryAccess] = useState(false);
   // const [isGrantingOrDenyingHistoryAccess, setIsGrantingOrDenyingHistoryAccess] = useState(false);
 
@@ -111,6 +115,28 @@ const RelationshipDetail = () => {
   const partner = relationshipToDisplay.initiator?._id === user?.id 
     ? relationshipToDisplay.partner 
     : relationshipToDisplay.initiator;
+
+  const relationshipTypes = [
+    'acquaintance', 'friend', 'close_friend', 'best_friend', 'romantic_interest', 'partner', 'engaged', 'married', 'family', 'mentor', 'mentee'
+  ];
+
+  const pendingTypeRequest = relationshipToDisplay.typeChangeRequest?.requested ? relationshipToDisplay.typeChangeRequest : null;
+  const iRequestedTypeChange = pendingTypeRequest && pendingTypeRequest.requestedBy === user?.id;
+
+  const handleSendTypeChange = async () => {
+    if (!selectedType || selectedType === relationshipToDisplay.type) {
+      toast.error('Please select a different relationship type');
+      return;
+    }
+    const res = await requestTypeChange(relationshipToDisplay._id, { newType: selectedType, message: typeChangeMessage || undefined });
+    if (res.success) {
+      toast.success('Type change request sent');
+      setShowTypeDropdown(false);
+      setTypeChangeMessage('');
+    } else {
+      toast.error(res.error);
+    }
+  };
 
   // const hasHistoryAccess = relationshipToDisplay?.historyAccess?.granted;
   // const historyAccessRequestedByMe = relationshipToDisplay?.historyAccess?.requested && relationshipToDisplay?.historyAccess?.requestedBy?._id === user?._id;
@@ -201,6 +227,11 @@ const RelationshipDetail = () => {
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
                       {relationshipToDisplay.type?.replace('_', ' ') || 'N/A'}
                     </span>
+                  {relationshipToDisplay.typeChangeRequest?.requested && (
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                      Type change pending
+                    </span>
+                  )}
                   </div>
                 </div>
               </div>
@@ -220,6 +251,56 @@ const RelationshipDetail = () => {
                   <Settings className="h-4 w-4 mr-2" />
                   Settings
                 </Link>
+
+                {relationshipToDisplay.status === 'active' && (
+                  <div className="relative">
+                    <button
+                      onClick={() => setShowTypeDropdown(v => !v)}
+                      className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-colors duration-200"
+                    >
+                      <ChevronDown className="h-4 w-4 mr-2" />
+                      Change Type
+                    </button>
+                    {showTypeDropdown && (
+                      <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-custom-light dark:shadow-custom-dark py-4 z-50 border border-gray-200 dark:border-gray-700">
+                        <div className="px-4">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Select new type</label>
+                          <select
+                            value={selectedType}
+                            onChange={e => setSelectedType(e.target.value)}
+                            className="w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white py-2.5 mb-3"
+                          >
+                            <option value="">Choose...</option>
+                            {relationshipTypes.map(t => (
+                              <option key={t} value={t}>{t.replace('_',' ')}</option>
+                            ))}
+                          </select>
+                          <textarea
+                            value={typeChangeMessage}
+                            onChange={e => setTypeChangeMessage(e.target.value)}
+                            rows={3}
+                            placeholder="Optional message"
+                            className="w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white p-2 mb-3"
+                          />
+                          <div className="flex space-x-2">
+                            <button
+                              onClick={handleSendTypeChange}
+                              className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            >
+                              Send Request
+                            </button>
+                            <button
+                              onClick={() => { setShowTypeDropdown(false); setTypeChangeMessage(''); }}
+                              className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* History Access Buttons */}
                 {/* {hasHistoryAccess ? (
@@ -358,6 +439,52 @@ const RelationshipDetail = () => {
           <div className="p-6">
             {activeTab === 'overview' && (
               <div className="space-y-6 animate-fade-in">
+                {pendingTypeRequest && (
+                  <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md p-4 flex items-start justify-between">
+                    <div>
+                      <p className="text-sm text-blue-800 dark:text-blue-200">
+                        {iRequestedTypeChange ? 'You requested' : `${partner?.firstName || 'Partner'} requested`} changing type to <strong>{pendingTypeRequest.newType?.replace('_',' ')}</strong>.
+                      </p>
+                      {pendingTypeRequest.message && (
+                        <p className="text-sm text-blue-800 dark:text-blue-200 mt-1">Message: {pendingTypeRequest.message}</p>
+                      )}
+                    </div>
+                    <div className="flex space-x-2">
+                      {iRequestedTypeChange ? (
+                        <button
+                          onClick={async () => {
+                            const res = await cancelTypeChange(relationshipToDisplay._id);
+                            if (res.success) toast.success('Request canceled'); else toast.error(res.error);
+                          }}
+                          className="px-3 py-1.5 rounded-md text-sm border border-blue-300 text-blue-700 dark:text-blue-300 bg-white dark:bg-transparent hover:bg-blue-100"
+                        >
+                          Cancel Request
+                        </button>
+                      ) : (
+                        <>
+                          <button
+                            onClick={async () => {
+                              const res = await acceptTypeChange(relationshipToDisplay._id);
+                              if (res.success) toast.success('Type changed'); else toast.error(res.error);
+                            }}
+                            className="px-3 py-1.5 rounded-md text-sm text-white bg-blue-600 hover:bg-blue-700"
+                          >
+                            Accept
+                          </button>
+                          <button
+                            onClick={async () => {
+                              const res = await declineTypeChange(relationshipToDisplay._id);
+                              if (res.success) toast.success('Request declined'); else toast.error(res.error);
+                            }}
+                            className="px-3 py-1.5 rounded-md text-sm border border-blue-300 text-blue-700 dark:text-blue-300 bg-white dark:bg-transparent hover:bg-blue-100"
+                          >
+                            Decline
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
                 {/* Description */}
                 {relationshipToDisplay.description && (
                   <div>

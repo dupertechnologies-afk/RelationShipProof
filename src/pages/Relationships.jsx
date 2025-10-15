@@ -143,7 +143,6 @@ const Relationships = () => {
       partner.lastName.toLowerCase().includes(searchTerm.toLowerCase());
     
     const matchesStatus = statusFilter === 'all' || 
-      // (statusFilter === 'incoming_history_request' ? historyAccessRequestedByPartner : 
       relationship.status === statusFilter;
     const matchesType = typeFilter === 'all' || relationship.type === typeFilter;
     
@@ -236,6 +235,7 @@ const Relationships = () => {
             <option value="active">Active</option>
             <option value="pending">Pending</option>
             <option value="ended">Ended</option>
+            <option value="declined">Declined</option>
             {/* <option value="incoming_history_request">Incoming History Requests</option> */}
           </select>
   
@@ -412,6 +412,11 @@ const Relationships = () => {
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getTypeColor(relationship.type)}`}>
                       {relationship.type.replace('_', ' ')}
                     </span>
+                    {relationship.typeChangeRequest?.requested && relationship.typeChangeRequest?.requestedBy !== user?.id && (
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                        Type change pending
+                      </span>
+                    )}
                   </div>
   
                   {/* Stats */}
@@ -456,13 +461,29 @@ const Relationships = () => {
                           Decline
                         </button>
                       </>
+                    ) : relationship.status === 'declined' ? (
+                      <button
+                        onClick={() => {
+                          // remove from current user's view only
+                          api.delete(`/relationships/${relationship._id}`)
+                            .then(() => {
+                              toast.success('Removed');
+                              getRelationships();
+                            })
+                            .catch((err) => toast.error(err.response?.data?.message || 'Failed to remove'));
+                        }}
+                        className="flex-1 inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
+                      >
+                        Remove
+                      </button>
                     ) : (
-<div></div>                      // <Link
-                      //   to={`/relationships/${relationship._id}`}
-                      //   className="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
-                      // >
-                      //   View Details
-                      // </Link>
+                      <Link
+                        to={`/relationships/${relationship._id}/summary`}
+                        className="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        View Details
+                      </Link>
                     )}
                   </div>
   

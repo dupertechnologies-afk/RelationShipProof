@@ -50,17 +50,43 @@ const CreateRelationship = () => {
     setIsLoading(true);
     try {
       const relationshipData = {
-        ...formData,
-        initiatedBy: user._id, // Assuming the current user initiates the relationship
+        // Map UI fields to backend API expectations
+        title: formData.title,
+        description: formData.description,
+        // Align to backend enum values
+        type: mapUiTypeToApi(formData.type),
+        partnerEmail: formData.partner.email,
       };
-      await createRelationship(relationshipData);
-      toast.success('Relationship invitation sent successfully!');
-      navigate('/relationships');
+      const result = await createRelationship(relationshipData);
+      if (result.success) {
+        toast.success('Relationship invitation sent successfully!');
+        navigate('/relationships');
+      } else {
+        toast.error(result.error || 'Failed to send invitation.');
+      }
     } catch (error) {
       console.error('Failed to create relationship:', error);
-      toast.error(error.response?.data?.message || 'Failed to send invitation. Please try again.');
+      toast.error('Failed to send invitation. Please try again.');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  // Helper: map UI select values to backend enum values
+  const mapUiTypeToApi = (value) => {
+    switch (value) {
+      case 'friendship':
+        return 'friend';
+      case 'platonic':
+        return 'close_friend';
+      case 'romantic':
+        return 'partner';
+      case 'familial':
+        return 'family';
+      case 'professional':
+        return 'mentor';
+      default:
+        return 'acquaintance';
     }
   };
 

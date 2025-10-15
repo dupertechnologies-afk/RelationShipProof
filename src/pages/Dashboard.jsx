@@ -60,6 +60,8 @@ const Dashboard = () => {
     r.status === 'pending' && r.partner._id === user?.id
   );
 
+  const incomingTypeChangeRequests = relationships.filter(r => r.typeChangeRequest?.requested && r.typeChangeRequest?.requestedBy !== user?.id);
+
   // const relationshipsWithHistoryStatus = relationships.map(r => ({
   //   ...r,
   //   historyAccessRequestedByPartner: r.historyAccess?.requested && r.historyAccess?.requestedBy?._id === (r.initiator._id === user?.id ? r.partner._id : r.initiator._id)
@@ -211,6 +213,31 @@ const Dashboard = () => {
             </div>
           )}
 
+          {/* Incoming Type Change Requests */}
+          {incomingTypeChangeRequests.length > 0 && (
+            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 shadow-sm">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <Bell className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="ml-3 flex-1">
+                  <h3 className="text-sm font-medium text-blue-800 dark:text-blue-200">
+                    You have {incomingTypeChangeRequests.length} relationship type change request{incomingTypeChangeRequests.length > 1 ? 's' : ''}
+                  </h3>
+                  <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+                    Review and respond to requests to change relationship type
+                  </p>
+                </div>
+                <Link
+                  to="/relationships"
+                  className="ml-4 flex-shrink-0 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm flex items-center"
+                >
+                  Review <ChevronRight className="h-4 w-4 ml-1" />
+                </Link>
+              </div>
+            </div>
+          )}
+
           {/* Incoming History Access Requests Alert */}
           {/* {incomingHistoryRequests.length > 0 && (
             <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 shadow-sm">
@@ -332,88 +359,173 @@ const Dashboard = () => {
             <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
               <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-700">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">Recent Relationships</h2>
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg">
+                      <Heart className="h-5 w-5 text-white" />
+                    </div>
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">Recent Relationships</h2>
+                  </div>
                   <Link
                     to="/relationships"
-                    className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 text-sm font-medium flex items-center"
+                    className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 text-sm font-medium flex items-center group"
                   >
-                    View all <ExternalLink className="h-4 w-4 ml-1" />
+                    View all <ExternalLink className="h-4 w-4 ml-1 group-hover:translate-x-0.5 transition-transform" />
                   </Link>
                 </div>
               </div>
 
               <div className="p-6">
                 {recentRelationships.length > 0 ? (
-                  <div className="space-y-4">
-                    {recentRelationships.map((relationship) => {
+                  <div className="grid gap-4">
+                    {recentRelationships.map((relationship, index) => {
                       const partner = relationship.initiator._id === user?.id 
                         ? relationship.partner 
                         : relationship.initiator;
                       
+                      const getTypeColor = (type) => {
+                        const colors = {
+                          'friend': 'from-blue-500 to-blue-600',
+                          'close_friend': 'from-indigo-500 to-indigo-600',
+                          'best_friend': 'from-purple-500 to-purple-600',
+                          'romantic_interest': 'from-pink-500 to-pink-600',
+                          'partner': 'from-red-500 to-red-600',
+                          'engaged': 'from-rose-500 to-rose-600',
+                          'married': 'from-emerald-500 to-emerald-600',
+                          'family': 'from-amber-500 to-amber-600',
+                          'mentor': 'from-teal-500 to-teal-600',
+                          'mentee': 'from-cyan-500 to-cyan-600',
+                          'acquaintance': 'from-gray-500 to-gray-600'
+                        };
+                        return colors[type] || 'from-gray-500 to-gray-600';
+                      };
+
+                      const getTypeIcon = (type) => {
+                        const icons = {
+                          'friend': '👥',
+                          'close_friend': '🤝',
+                          'best_friend': '💎',
+                          'romantic_interest': '💕',
+                          'partner': '💖',
+                          'engaged': '💍',
+                          'married': '💒',
+                          'family': '👨‍👩‍👧‍👦',
+                          'mentor': '🎓',
+                          'mentee': '📚',
+                          'acquaintance': '👋'
+                        };
+                        return icons[type] || '💫';
+                      };
+                      
                       return (
-                        <div
+                        <Link
                           key={relationship._id}
-                          className="group flex items-center justify-between p-4 rounded-xl hover:bg-gray-50/50 dark:hover:bg-gray-700/30 transition-all duration-300"
+                          to={`/relationships/${relationship._id}/summary`}
+                          className="group relative bg-gradient-to-r from-white to-gray-50/50 dark:from-gray-800 dark:to-gray-800/50 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 p-5 hover:shadow-lg hover:shadow-primary-500/10 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 hover:-translate-y-1 animate-slide-in-up block cursor-pointer"
+                          style={{
+                            animationDelay: `${index * 150}ms`
+                          }}
                         >
+                          {/* Status indicator */}
+                          <div className="absolute top-4 right-4">
+                            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                          </div>
+
                           <div className="flex items-center space-x-4">
-                            {partner.avatar ? (
-                              <img
-                                src={partner.avatar}
-                                alt={partner.fullName}
-                                className="h-12 w-12 rounded-xl object-cover shadow-sm"
-                              />
-                            ) : (
-                              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-sm">
-                                <span className="text-white font-medium text-lg">
-                                  {partner.firstName?.[0]}{partner.lastName?.[0]}
-                                </span>
+                            {/* Avatar with enhanced styling */}
+                            <div className="relative">
+                              {partner.avatar ? (
+                                <img
+                                  src={partner.avatar}
+                                  alt={partner.fullName}
+                                  className="h-14 w-14 rounded-2xl object-cover shadow-lg ring-2 ring-white dark:ring-gray-800"
+                                />
+                              ) : (
+                                <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg ring-2 ring-white dark:ring-gray-800">
+                                  <span className="text-white font-bold text-lg">
+                                    {partner.firstName?.[0]}{partner.lastName?.[0]}
+                                  </span>
+                                </div>
+                              )}
+                              {/* Type indicator */}
+                              <div className={`absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-br ${getTypeColor(relationship.type)} rounded-full flex items-center justify-center text-xs shadow-lg`}>
+                                {getTypeIcon(relationship.type)}
                               </div>
-                            )}
-                            <div>
-                              <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                                {relationship.title}
-                              </h3>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">
-                                with {partner.firstName} {partner.lastName}
-                              </p>
-                              <div className="flex items-center mt-2 space-x-3">
-                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200 capitalize">
-                                  {relationship.type.replace('_', ' ')}
-                                </span>
-                                {/* <span className="text-xs text-gray-500 dark:text-gray-400">
-                                  Trust: {relationship.stats?.trustLevel || 50}%
-                                </span> */}
+                            </div>
+
+                            {/* Content */}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-start justify-between">
+                                <div className="flex-1">
+                                  <h3 className="font-bold text-lg text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-1">
+                                    {relationship.title}
+                                  </h3>
+                                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                                    with <span className="font-medium text-gray-700 dark:text-gray-300">{partner.firstName} {partner.lastName}</span>
+                                  </p>
+                                  
+                                  {/* Tags and info */}
+                                  <div className="flex items-center space-x-3">
+                                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getTypeColor(relationship.type)} text-white shadow-sm`}>
+                                      {relationship.type.replace('_', ' ')}
+                                    </span>
+                                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                                      Active since {new Date(relationship.createdAt).toLocaleDateString()}
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Action indicator */}
+                                <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                  <div className="flex items-center px-3 py-2 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg text-sm font-medium">
+                                    <MessageCircle className="h-4 w-4 mr-1" />
+                                    Click to view
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          {/* <Link
-                            to={`/relationships/${relationship._id}`}
-                            className="opacity-0 group-hover:opacity-100 flex items-center px-4 py-2 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/50 transition-all duration-300"
-                          >
-                            View <ChevronRight className="h-4 w-4 ml-1" />
-                          </Link> */}
-                        </div>
+
+                          {/* Progress bar (placeholder for future features) */}
+                          <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
+                              <span>Relationship Strength</span>
+                              <span>85%</span>
+                            </div>
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full w-4/5 transition-all duration-1000 ease-out"></div>
+                            </div>
+                          </div>
+                        </Link>
                       );
                     })}
                   </div>
                 ) : (
-                  <div className="text-center py-12">
-                    <div className="mx-auto h-16 w-16 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center mb-4">
-                      <Heart className="h-8 w-8 text-gray-400" />
+                  <div className="text-center py-16 animate-fade-in">
+                    <div className="mx-auto h-20 w-20 bg-gradient-to-br from-pink-100 to-purple-100 dark:from-pink-900/20 dark:to-purple-900/20 rounded-3xl flex items-center justify-center mb-6 animate-bounce-gentle">
+                      <Heart className="h-10 w-10 text-pink-500" />
                     </div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                       No relationships yet
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-sm mx-auto">
-                      Start building meaningful connections by inviting someone special.
+                    <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-sm mx-auto leading-relaxed">
+                      Start building meaningful connections by inviting someone special to join your journey.
                     </p>
-                    <Link
-                      to="/relationships/invite"
-                      className="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300"
-                    >
-                      <Plus className="h-4 w-4 mr-2" />
-                      Invite Someone
-                    </Link>
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                      <Link
+                        to="/relationships/invite"
+                        className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary-500/25 transition-all duration-300 hover:-translate-y-0.5"
+                      >
+                        <Plus className="h-5 w-5 mr-2" />
+                        Invite Someone
+                      </Link>
+                      <Link
+                        to="/find-someone"
+                        className="inline-flex items-center px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 hover:-translate-y-0.5"
+                      >
+                        <Search className="h-5 w-5 mr-2" />
+                        Find Someone
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>
